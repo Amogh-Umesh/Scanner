@@ -1,4 +1,4 @@
-# scanner_app
+# Scanner
 
 A new Flutter project.
 
