@@ -1,4 +1,6 @@
-# scanner_app
+# Scanner
+WEC GDSC Recs task Scanner App\
+Readme will be updated soon
 
 A new Flutter project.
 
