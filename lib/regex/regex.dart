@@ -17,6 +17,7 @@ List<dynamic> getUrls(String input) {
     } else {
       str = 'https:' + str;
     }
+    str.toLowerCase();
 
     UrlLink temp = UrlLink(str);
     urlS.add(temp);

@@ -4,20 +4,20 @@ import 'package:scanner_app/regex/regex.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/services.dart';
 
-class UrlPhone extends StatefulWidget {
-  const UrlPhone({Key? key, required this.obj,}) : super(key: key);
+class UrlPhoneHistory extends StatefulWidget {
+  const UrlPhoneHistory({Key? key, required this.obj,}) : super(key: key);
   final dynamic obj;
   @override
-  _UrlPhoneState createState() => _UrlPhoneState();
+  _UrlPhoneHistoryState createState() => _UrlPhoneHistoryState();
 }
 
-class _UrlPhoneState extends State<UrlPhone> {
+class _UrlPhoneHistoryState extends State<UrlPhoneHistory> {
   @override
   Widget build(BuildContext context) {
     if(widget.obj.runtimeType == PhoneNumber){
       return Phone(phonenumber: widget.obj.phoneNumber);
     }else if(widget.obj.runtimeType == UrlLink){
-      return Url(url: widget.obj.url);
+      return UrlHistory(url: widget.obj.url);
     }else{
       return Container();
     }
@@ -26,11 +26,11 @@ class _UrlPhoneState extends State<UrlPhone> {
 
 
 
-class Url extends StatefulWidget {
-  const Url({Key? key, required this.url,}) : super(key: key);
+class UrlHistory extends StatefulWidget {
+  const UrlHistory({Key? key, required this.url,}) : super(key: key);
   final String url;
   @override
-  _UrlState createState() => _UrlState();
+  _UrlHistoryState createState() => _UrlHistoryState();
 }
 _launchURLApp(String linkurl) async {
   if (await canLaunch(linkurl)) {
@@ -39,7 +39,7 @@ _launchURLApp(String linkurl) async {
     throw 'Could not launch url';
   }
 }
-class _UrlState extends State<Url> {
+class _UrlHistoryState extends State<UrlHistory> {
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +51,11 @@ class _UrlState extends State<Url> {
     }
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20)
+          borderRadius: BorderRadius.circular(20)
       ),
       margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       elevation: 20,
-      color: Colors.green[300],
+      color: Colors.grey[850],
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
         child: SizedBox(
@@ -68,16 +68,16 @@ class _UrlState extends State<Url> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)
                 ),
-                color: Colors.lightGreen[50],
+                color: Colors.grey[400],
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 1),
                   child: Center(
                     child: Text(
-                      displayUrl,
-                      style: const TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.blue,
-                      )
+                        displayUrl,
+                        style: const TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Colors.blue,
+                        )
 
                     ),
                   ),
@@ -89,7 +89,7 @@ class _UrlState extends State<Url> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton(onPressed:(){_launchURLApp(widget.url);saveHistory(UrlLink(widget.url));setState(() {});}, child: Row(
+                  ElevatedButton(onPressed:(){_launchURLApp(widget.url);}, child: Row(
 
                     children: const [
                       Text(
@@ -101,7 +101,7 @@ class _UrlState extends State<Url> {
                       Icon(Icons.arrow_drop_up),
                     ],
                   )),
-                  ElevatedButton(onPressed: (){Clipboard.setData(ClipboardData(text: widget.url));saveHistory(UrlLink(widget.url));setState(() {});}, child: Row(
+                  ElevatedButton(onPressed: (){Clipboard.setData(ClipboardData(text: widget.url));}, child: Row(
                     children: const [
                       Text(
                         'Copy',
@@ -138,7 +138,7 @@ class _PhoneState extends State<Phone> {
       ),
       margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       elevation: 20,
-      color: Colors.green[300],
+      color: Colors.grey[850],
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
         child: SizedBox(
@@ -152,7 +152,7 @@ class _PhoneState extends State<Phone> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)
                 ),
-                color: Colors.lightGreen[50],
+                color: Colors.grey[400],
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 1),
                   child: Center(
